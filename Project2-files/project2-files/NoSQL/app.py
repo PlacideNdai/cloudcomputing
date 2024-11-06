@@ -13,13 +13,12 @@ app = Flask(__name__, static_url_path="")
 
 UPLOAD_FOLDER = os.path.join(app.root_path,'media')
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-AWS_ACCESS_KEY="<enter>"
-AWS_SECRET_KEY="<enter>"
+# AWS_ACCESS_KEY="<enter>"
+# AWS_SECRET_KEY="<enter>"
 REGION="us-east-1"
-BUCKET_NAME="cloudcomputingcourse2021lab2"
+BUCKET_NAME="lab2photo"
 
-dynamodb = boto3.resource('dynamodb', aws_access_key_id=AWS_ACCESS_KEY,
-                            aws_secret_access_key=AWS_SECRET_KEY,
+dynamodb = boto3.resource('dynamodb',
                             region_name=REGION)
 
 table = dynamodb.Table('PhotoGallery')
@@ -51,8 +50,7 @@ def getExifData(path_name):
     return ExifData
 
 def s3uploading(filename, filenameWithPath):
-    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY,
-                            aws_secret_access_key=AWS_SECRET_KEY)
+    s3 = boto3.client('s3')
                        
     bucket = BUCKET_NAME
     path_filename = "photos/" + filename
@@ -137,4 +135,4 @@ def search_page():
     return render_template('search.html', photos=items, searchquery=query)
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5100)
