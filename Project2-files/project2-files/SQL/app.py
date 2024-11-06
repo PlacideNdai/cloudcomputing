@@ -15,13 +15,13 @@ app = Flask(__name__, static_url_path="")
 UPLOAD_FOLDER = os.path.join(app.root_path,'static','media')
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 BASE_URL="http://localhost:5000/media/"
-AWS_ACCESS_KEY="<enter>"
-AWS_SECRET_KEY="<enter>"
+# AWS_ACCESS_KEY="ASIAZNCZS6YQ7J4Z5MDU"
+# AWS_SECRET_KEY="ZK9AZJKv9hoDkIf3qhSijri90sXAsYbZfGE5YCbd"
 REGION="us-east-1"
 BUCKET_NAME="lab2photo"
 DB_HOSTNAME="photodb.cmk0sjt0siak.us-east-1.rds.amazonaws.com"
 DB_USERNAME = 'root'
-DB_PASSWORD = 'Photodb52!'
+DB_PASSWORD = 'PlasDB52!'
 DB_NAME = 'photodb'
 
 
@@ -51,8 +51,7 @@ def getExifData(path_name):
     return ExifData
 
 def s3uploading(filename, filenameWithPath):
-    s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY,
-                            aws_secret_access_key=AWS_SECRET_KEY)
+    s3 = boto3.client('s3')
                        
     bucket = BUCKET_NAME
     path_filename = "photos/" + filename
