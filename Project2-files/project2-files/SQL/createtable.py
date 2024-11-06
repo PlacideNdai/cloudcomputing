@@ -2,7 +2,7 @@
 import pymysql.cursors
 
 DB_USERNAME = 'root'
-DB_PASSWORD = 'Photodb52!'
+DB_PASSWORD = 'PlasDB52!'
 DB_NAME = 'photodb'
 
 #conn = MySQLdb.connect (host = "photogallerydb.chuw1cahpjrd.us-east-1.rds.amazonaws.com",
